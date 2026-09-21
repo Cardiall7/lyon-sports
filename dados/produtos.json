@@ -1,0 +1,76 @@
+[
+    {
+        "id": 1790012705149,
+        "nome": "Brasil",
+        "descricao": "Camiseta top",
+        "categoria": "selecao",
+        "selo": "NOVO",
+        "ativo": true,
+        "variantes": [
+            {
+                "id": 1790012705149,
+                "nome": "Amarela",
+                "cor": "#fff700",
+                "preco": 109.5,
+                "tamanhos": [
+                    "M",
+                    "G"
+                ],
+                "imagens": [
+                    "/uploads/1790012705135-121602.jpg"
+                ]
+            },
+            {
+                "id": 1790012705150,
+                "nome": "Azul",
+                "cor": "#001dfa",
+                "preco": 114.5,
+                "tamanhos": [
+                    "M",
+                    "G"
+                ],
+                "imagens": [
+                    "/uploads/1790012705138-316574.webp"
+                ]
+            }
+        ]
+    },
+    {
+        "id": 1790013000546,
+        "nome": "Real Madrid",
+        "descricao": "Real maior q barça",
+        "categoria": "europeu",
+        "selo": "NOVO",
+        "ativo": true,
+        "variantes": [
+            {
+                "id": 1790013000546,
+                "nome": "Branca",
+                "cor": "#ffffff",
+                "preco": 99.9,
+                "tamanhos": [
+                    "M",
+                    "P",
+                    "G"
+                ],
+                "imagens": [
+                    "/uploads/1790013000541-334412.png"
+                ]
+            },
+            {
+                "id": 1790013105194,
+                "nome": "Verde",
+                "cor": "#2e6037",
+                "preco": 99.9,
+                "tamanhos": [
+                    "P",
+                    "M",
+                    "G"
+                ],
+                "imagens": [
+                    "/uploads/1790013105188-470410.jpg"
+                ]
+            }
+        ]
+    }
+]
