@@ -3,6 +3,8 @@ const session = require("express-session");
 const multer = require("multer");
 const fs = require("fs");
 const path = require("path");
+const helmet = require("helmet");
+const rateLimit = require("express-rate-limit");
 
 require("dotenv").config({
     path: require("path").join(__dirname, ".env")
@@ -73,6 +75,14 @@ if (!fs.existsSync(arquivoProdutos)) {
 // EXPRESS
 // =====================================================
 
+app.set("trust proxy", 1);
+
+app.use(
+    helmet({
+        contentSecurityPolicy: false
+    })
+);
+
 app.use(express.json());
 
 app.use(
@@ -97,17 +107,67 @@ app.use(
 
         cookie: {
 
+            httpOnly:
+                true,
+
+            secure:
+                process.env.NODE_ENV ===
+                "production",
+
+            sameSite:
+                "lax",
+
             maxAge:
                 1000 *
                 60 *
                 60 *
-                8
+                2
 
         }
 
     })
 );
 
+
+// =====================================================
+// PROTEÇÃO DA PASTA ADMIN
+// =====================================================
+
+app.use(
+    "/admin",
+
+    (req, res, next) => {
+
+        const arquivosPublicos = [
+            "/login.html",
+            "/login.css",
+            "/login.js"
+        ];
+
+        if (
+            arquivosPublicos.includes(
+                req.path
+            )
+        ) {
+            return next();
+        }
+
+        if (
+            !req.session.admin
+        ) {
+            return res.redirect(
+                "/admin/login.html"
+            );
+        }
+
+        next();
+    }
+);
+
+
+// =====================================================
+// ARQUIVOS PÚBLICOS
+// =====================================================
 
 app.use(
 
@@ -229,11 +289,40 @@ function salvarProdutos(produtos) {
 
 
 // =====================================================
+// LIMITE DE TENTATIVAS DE LOGIN
+// =====================================================
+
+const limiteLogin = rateLimit({
+
+    windowMs:
+        15 * 60 * 1000,
+
+    max:
+        5,
+
+    standardHeaders:
+        true,
+
+    legacyHeaders:
+        false,
+
+    message: {
+        ok: false,
+        mensagem:
+            "Muitas tentativas. Aguarde 15 minutos."
+    }
+
+});
+
+
+// =====================================================
 // LOGIN
 // =====================================================
 
 app.post(
     "/api/login",
+
+    limiteLogin,
 
     (req, res) => {
 
@@ -270,19 +359,39 @@ app.post(
             admin2
         ) {
 
-            req.session.admin =
-                true;
+            return req.session.regenerate(
+                (erro) => {
 
+                    if (erro) {
 
-            req.session.usuario =
-                usuario;
+                        return res
+                            .status(500)
+                            .json({
+                                ok: false,
+                                mensagem:
+                                    "Erro ao iniciar sessão."
+                            });
 
+                    }
 
-            return res.json({
+                    req.session.admin =
+                        true;
 
-                ok: true
+                    req.session.usuario =
+                        usuario;
 
-            });
+                    req.session.save(
+                        () => {
+
+                            res.json({
+                                ok: true
+                            });
+
+                        }
+                    );
+
+                }
+            );
 
         }
 
@@ -312,6 +421,10 @@ app.post(
 
         req.session.destroy(
             () => {
+
+                res.clearCookie(
+                    "connect.sid"
+                );
 
                 res.json({
 
@@ -756,6 +869,7 @@ app.delete(
 // =====================================================
 
 app.listen(PORT, () => {
+
     console.log("Lyon Sports:");
     console.log("http://localhost:3000");
 
@@ -764,4 +878,5 @@ app.listen(PORT, () => {
 
     console.log("Painel Admin:");
     console.log("http://localhost:3000/admin/");
+
 });
