@@ -9,34 +9,39 @@ require("dotenv").config();
 
 const app = express();
 
-const PORT =
-    process.env.PORT || 3000;
+const PORT = process.env.PORT || 3000;
 
 
 // =====================================================
-// RENDER / PROXY
+// RENDER
 // =====================================================
 
-app.set(
-    "trust proxy",
-    1
-);
+app.set("trust proxy", 1);
 
 
 // =====================================================
-// BANCO POSTGRESQL
+// POSTGRESQL
 // =====================================================
 
-const usandoRenderExterno =
-    process.env.DATABASE_URL &&
-    process.env.DATABASE_URL.includes("render.com");
+if (!process.env.DATABASE_URL) {
+
+    console.error(
+        "DATABASE_URL não encontrada."
+    );
+
+    process.exit(1);
+
+}
+
 
 const pool = new Pool({
 
     connectionString:
         process.env.DATABASE_URL,
 
-    ssl: usandoRenderExterno
+    ssl: process.env.DATABASE_URL.includes(
+        "render.com"
+    )
         ? {
             rejectUnauthorized: false
         }
@@ -71,20 +76,15 @@ app.use(
     express.json()
 );
 
-
 app.use(
-
     express.urlencoded({
-
         extended: true
-
     })
-
 );
 
 
 // =====================================================
-// SESSÃO ADMIN
+// SESSÃO
 // =====================================================
 
 app.use(
@@ -93,7 +93,7 @@ app.use(
 
         secret:
             process.env.SESSION_SECRET ||
-            "lyon-sports",
+            "lyon-sports-secret",
 
         resave:
             false,
@@ -148,9 +148,6 @@ app.use(
 // MULTER
 // =====================================================
 
-// Agora as fotos ficam temporariamente
-// na memória e depois vão para o Cloudinary.
-
 const upload = multer({
 
     storage:
@@ -199,7 +196,7 @@ const upload = multer({
 
 
 // =====================================================
-// CRIAR TABELA AUTOMATICAMENTE
+// CRIAR TABELA
 // =====================================================
 
 async function criarTabela() {
@@ -234,7 +231,7 @@ async function criarTabela() {
 
 
 // =====================================================
-// ENVIAR FOTO PARA CLOUDINARY
+// CLOUDINARY
 // =====================================================
 
 function enviarImagemCloudinary(
@@ -248,9 +245,7 @@ function enviarImagemCloudinary(
             reject
         ) => {
 
-
             const stream =
-
                 cloudinary
                     .uploader
                     .upload_stream(
@@ -270,7 +265,6 @@ function enviarImagemCloudinary(
                             resultado
                         ) => {
 
-
                             if (erro) {
 
                                 reject(
@@ -282,9 +276,15 @@ function enviarImagemCloudinary(
                             }
 
 
-                            resolve(
-                                resultado.secure_url
-                            );
+                            resolve({
+
+                                url:
+                                    resultado.secure_url,
+
+                                public_id:
+                                    resultado.public_id
+
+                            });
 
                         }
 
@@ -303,7 +303,7 @@ function enviarImagemCloudinary(
 
 
 // =====================================================
-// LOGIN ADMIN
+// LOGIN
 // =====================================================
 
 app.post(
@@ -315,17 +315,13 @@ app.post(
         res
     ) => {
 
-
         const {
-
             usuario,
             senha
-
         } = req.body;
 
 
         const admin1 =
-
             usuario ===
                 process.env.ADMIN1_USER
 
@@ -336,7 +332,6 @@ app.post(
 
 
         const admin2 =
-
             usuario ===
                 process.env.ADMIN2_USER
 
@@ -351,10 +346,8 @@ app.post(
             admin2
         ) {
 
-
             req.session.admin =
                 true;
-
 
             req.session.usuario =
                 usuario;
@@ -369,7 +362,7 @@ app.post(
         }
 
 
-        res
+        return res
             .status(401)
             .json({
 
@@ -398,11 +391,9 @@ app.post(
         res
     ) => {
 
-
         req.session.destroy(
 
             () => {
-
 
                 res.json({
 
@@ -432,11 +423,9 @@ app.get(
         res
     ) => {
 
-
         if (
             req.session.admin
         ) {
-
 
             return res.json({
 
@@ -450,7 +439,7 @@ app.get(
         }
 
 
-        res
+        return res
             .status(401)
             .json({
 
@@ -464,7 +453,7 @@ app.get(
 
 
 // =====================================================
-// PROTEGER ROTAS ADMIN
+// PROTEÇÃO ADMIN
 // =====================================================
 
 function somenteAdmin(
@@ -473,11 +462,9 @@ function somenteAdmin(
     next
 ) {
 
-
     if (
         !req.session.admin
     ) {
-
 
         return res
             .status(401)
@@ -497,7 +484,7 @@ function somenteAdmin(
 
 
 // =====================================================
-// PRODUTOS DO SITE
+// PRODUTOS SITE
 // =====================================================
 
 app.get(
@@ -509,12 +496,9 @@ app.get(
         res
     ) => {
 
-
         try {
 
-
             const resultado =
-
                 await pool.query(`
 
                     SELECT
@@ -542,7 +526,6 @@ app.get(
         }
 
         catch (erro) {
-
 
             console.error(
                 "Erro ao carregar produtos:",
@@ -581,12 +564,9 @@ app.get(
         res
     ) => {
 
-
         try {
 
-
             const resultado =
-
                 await pool.query(`
 
                     SELECT
@@ -613,9 +593,8 @@ app.get(
 
         catch (erro) {
 
-
             console.error(
-                "Erro ao carregar produtos Admin:",
+                "Erro ao carregar produtos:",
                 erro
             );
 
@@ -637,7 +616,7 @@ app.get(
 
 
 // =====================================================
-// CADASTRAR PRODUTO
+// CRIAR PRODUTO
 // =====================================================
 
 app.post(
@@ -653,15 +632,12 @@ app.post(
         res
     ) => {
 
-
         try {
-
 
             let variantes = [];
 
 
             try {
-
 
                 variantes =
                     JSON.parse(
@@ -673,44 +649,36 @@ app.post(
 
             catch {
 
-
                 return res
                     .status(400)
                     .json({
 
                         erro:
-                            "Dados das variantes inválidos."
+                            "Variantes inválidas."
 
                     });
 
             }
 
 
-            // =============================================
-            // ENVIAR FOTOS DE CADA COR/MODELO
-            // =============================================
-
             for (
                 let indice = 0;
-                indice < variantes.length;
+                indice <
+                variantes.length;
                 indice++
             ) {
 
-
                 const arquivos =
-
                     req.files.filter(
 
                         arquivo =>
-
                             arquivo.fieldname ===
                             `variante_${indice}`
 
                     );
 
 
-                const imagens =
-                    [];
+                const imagens = [];
 
 
                 for (
@@ -718,23 +686,20 @@ app.post(
                     of arquivos
                 ) {
 
-
-                    const url =
-
+                    const imagem =
                         await enviarImagemCloudinary(
                             arquivo
                         );
 
 
                     imagens.push(
-                        url
+                        imagem.url
                     );
 
                 }
 
 
                 variantes[indice].id =
-
                     Date.now() +
                     indice;
 
@@ -746,7 +711,6 @@ app.post(
 
 
             const resultado =
-
                 await pool.query(
 
                     `
@@ -809,7 +773,6 @@ app.post(
 
         catch (erro) {
 
-
             console.error(
                 "Erro ao cadastrar produto:",
                 erro
@@ -821,7 +784,10 @@ app.post(
                 .json({
 
                     erro:
-                        "Erro ao cadastrar produto."
+                        "Erro ao cadastrar produto.",
+
+                    detalhe:
+                        erro.message
 
                 });
 
@@ -849,15 +815,12 @@ app.put(
         res
     ) => {
 
-
         try {
-
 
             let variantes = [];
 
 
             try {
-
 
                 variantes =
                     JSON.parse(
@@ -869,36 +832,29 @@ app.put(
 
             catch {
 
-
                 return res
                     .status(400)
                     .json({
 
                         erro:
-                            "Dados das variantes inválidos."
+                            "Variantes inválidas."
 
                     });
 
             }
 
 
-            // =============================================
-            // NOVAS IMAGENS
-            // =============================================
-
             for (
                 let indice = 0;
-                indice < variantes.length;
+                indice <
+                variantes.length;
                 indice++
             ) {
 
-
                 const arquivos =
-
                     req.files.filter(
 
                         arquivo =>
-
                             arquivo.fieldname ===
                             `variante_${indice}`
 
@@ -914,16 +870,14 @@ app.put(
                     of arquivos
                 ) {
 
-
-                    const url =
-
+                    const imagem =
                         await enviarImagemCloudinary(
                             arquivo
                         );
 
 
                     novasImagens.push(
-                        url
+                        imagem.url
                     );
 
                 }
@@ -955,7 +909,6 @@ app.put(
 
 
             const resultado =
-
                 await pool.query(
 
                     `
@@ -963,12 +916,19 @@ app.put(
                     UPDATE produtos
 
                     SET
+
                         nome = $1,
+
                         descricao = $2,
+
                         categoria = $3,
+
                         selo = $4,
+
                         ativo = $5,
+
                         variantes = $6::jsonb,
+
                         atualizado_em = NOW()
 
                     WHERE id = $7
@@ -1008,7 +968,6 @@ app.put(
                 0
             ) {
 
-
                 return res
                     .status(404)
                     .json({
@@ -1029,7 +988,6 @@ app.put(
 
         catch (erro) {
 
-
             console.error(
                 "Erro ao editar produto:",
                 erro
@@ -1041,7 +999,10 @@ app.put(
                 .json({
 
                     erro:
-                        "Erro ao editar produto."
+                        "Erro ao editar produto.",
+
+                    detalhe:
+                        erro.message
 
                 });
 
@@ -1067,12 +1028,9 @@ app.delete(
         res
     ) => {
 
-
         try {
 
-
             const resultado =
-
                 await pool.query(
 
                     `
@@ -1097,7 +1055,6 @@ app.delete(
                 0
             ) {
 
-
                 return res
                     .status(404)
                     .json({
@@ -1119,7 +1076,6 @@ app.delete(
         }
 
         catch (erro) {
-
 
             console.error(
                 "Erro ao excluir produto:",
@@ -1144,7 +1100,7 @@ app.delete(
 
 
 // =====================================================
-// ERRO DE UPLOAD
+// ERROS
 // =====================================================
 
 app.use(
@@ -1156,8 +1112,8 @@ app.use(
         next
     ) => {
 
-
         console.error(
+            "Erro geral:",
             erro
         );
 
@@ -1166,7 +1122,6 @@ app.use(
             erro instanceof
             multer.MulterError
         ) {
-
 
             return res
                 .status(400)
@@ -1186,7 +1141,7 @@ app.use(
 
                 erro:
                     erro.message ||
-                    "Erro interno do servidor."
+                    "Erro interno."
 
             });
 
@@ -1201,16 +1156,19 @@ app.use(
 
 async function iniciarServidor() {
 
-
     try {
 
-
-        await criarTabela();
+        await pool.query(
+            "SELECT NOW()"
+        );
 
 
         console.log(
-            "Banco PostgreSQL conectado."
+            "PostgreSQL conectado."
         );
+
+
+        await criarTabela();
 
 
         console.log(
@@ -1223,7 +1181,6 @@ async function iniciarServidor() {
             PORT,
 
             () => {
-
 
                 console.log(
                     `Lyon Sports: http://localhost:${PORT}`
@@ -1242,16 +1199,13 @@ async function iniciarServidor() {
 
     catch (erro) {
 
-
         console.error(
             "Erro ao iniciar o servidor:",
             erro
         );
 
 
-        process.exit(
-            1
-        );
+        process.exit(1);
 
     }
 
