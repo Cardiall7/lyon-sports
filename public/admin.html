@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Lyon Sports | Painel Admin
+    </title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="lion-sports-branco.png">
+
+    <link
+        rel="stylesheet"
+        href="admin.css">
+
+</head>
+
+<body>
+
+
+    <!-- ===================================== -->
+    <!-- HEADER -->
+    <!-- ===================================== -->
+
+    <header>
+
+        <div class="marca">
+
+            <img
+                src="lion-sports-branco.png"
+                alt="Lyon Sports">
+
+            <div>
+
+                <strong>
+                    LYON SPORTS
+                </strong>
+
+                <span>
+                    Painel administrativo
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            onclick="sair()">
+
+            SAIR
+
+        </button>
+
+    </header>
+
+
+    <!-- ===================================== -->
+    <!-- CONTEÚDO -->
+    <!-- ===================================== -->
+
+    <main>
+
+
+        <!-- ================================= -->
+        <!-- FORMULÁRIO -->
+        <!-- ================================= -->
+
+        <section class="form-area">
+
+
+            <div class="titulo">
+
+                <p>
+                    PRODUTOS
+                </p>
+
+                <h1 id="tituloFormulario">
+                    Adicionar camisa
+                </h1>
+
+            </div>
+
+
+            <form id="formProduto">
+
+
+                <!-- ID -->
+
+                <input
+                    type="hidden"
+                    id="produtoId">
+
+
+                <!-- NOME -->
+
+                <label for="nome">
+                    Nome do produto
+                </label>
+
+                <input
+                    type="text"
+                    id="nome"
+                    placeholder="Ex: Camisa Brasil"
+                    required>
+
+
+                <!-- DESCRIÇÃO -->
+
+                <label for="descricao">
+                    Breve descrição
+                </label>
+
+                <textarea
+                    id="descricao"
+                    placeholder="Ex: Camisa da Seleção Brasileira, tecido leve e confortável."
+                    rows="4">
+                </textarea>
+
+
+                <!-- CATEGORIA -->
+
+                <label for="categoria">
+                    Categoria
+                </label>
+
+                <select id="categoria">
+
+                    <option value="brasileiro">
+                        Brasileiro
+                    </option>
+
+                    <option value="europeu">
+                        Europeu
+                    </option>
+
+                    <option value="selecao">
+                        Seleção
+                    </option>
+
+                    <option value="outro">
+                        Outro
+                    </option>
+
+                </select>
+
+
+                <!-- SELO -->
+
+                <label for="selo">
+                    Legenda / selo
+                </label>
+
+                <input
+                    type="text"
+                    id="selo"
+                    placeholder="NOVO, DESTAQUE, PROMOÇÃO...">
+
+
+                <!-- MOSTRAR NO SITE -->
+
+                <label class="produto-ativo">
+
+                    <input
+                        type="checkbox"
+                        id="ativo"
+                        checked>
+
+                    Mostrar produto no site
+
+                </label>
+
+
+                <hr>
+
+
+                <!-- ================================= -->
+                <!-- CORES / MODELOS -->
+                <!-- ================================= -->
+
+                <div class="cabecalho-variantes">
+
+                    <div>
+
+                        <h2>
+                            Cores / modelos
+                        </h2>
+
+                        <p>
+                            Ex: Brasil Amarela e Brasil Azul
+                        </p>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        onclick="adicionarVariante()">
+
+                        + ADICIONAR COR
+
+                    </button>
+
+                </div>
+
+
+                <!-- AS VARIANTES APARECEM AQUI -->
+
+                <div id="variantes"></div>
+
+
+                <!-- BOTÕES -->
+
+                <div class="botoes-form">
+
+                    <button
+                        type="submit"
+                        class="salvar">
+
+                        SALVAR PRODUTO
+
+                    </button>
+
+
+                    <button
+                        type="button"
+                        class="cancelar"
+                        onclick="limparFormulario()">
+
+                        CANCELAR
+
+                    </button>
+
+                </div>
+
+
+            </form>
+
+        </section>
+
+
+        <!-- ================================= -->
+        <!-- PRODUTOS CADASTRADOS -->
+        <!-- ================================= -->
+
+        <section class="lista-area">
+
+
+            <div class="titulo">
+
+                <p>
+                    CATÁLOGO
+                </p>
+
+                <h2>
+                    Produtos cadastrados
+                </h2>
+
+            </div>
+
+
+            <div id="listaProdutos">
+
+                <p>
+                    Nenhum produto cadastrado.
+                </p>
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+
+    <!-- ===================================== -->
+    <!-- JAVASCRIPT -->
+    <!-- ===================================== -->
+
+    <script src="admin.js"></script>
+
+
+</body>
+
+</html>

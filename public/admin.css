@@ -1,0 +1,1124 @@
+/* ========================================= */
+/* RESET */
+/* ========================================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/* ========================================= */
+/* BODY */
+/* ========================================= */
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #eef2f7;
+    color: #071a35;
+}
+
+
+/* ========================================= */
+/* HEADER */
+/* ========================================= */
+
+header {
+    min-height: 85px;
+    background: #071a35;
+    color: white;
+
+    padding: 15px 5%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    box-shadow: 0 4px 20px rgba(7, 26, 53, 0.12);
+}
+
+
+/* ========================================= */
+/* MARCA */
+/* ========================================= */
+
+.marca {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+
+.marca img {
+    width: 60px;
+    height: 60px;
+    object-fit: contain;
+}
+
+
+.marca div {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.marca strong {
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+
+.marca span {
+    color: #b8c6da;
+    font-size: 12px;
+    margin-top: 3px;
+}
+
+
+/* ========================================= */
+/* BOTÃO SAIR */
+/* ========================================= */
+
+header button {
+    border: 1px solid rgba(255, 255, 255, 0.3);
+
+    background: transparent;
+    color: white;
+
+    padding: 10px 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+
+header button:hover {
+    background: white;
+    color: #071a35;
+}
+
+
+/* ========================================= */
+/* CONTEÚDO PRINCIPAL */
+/* ========================================= */
+
+main {
+    width: 92%;
+    max-width: 1200px;
+
+    margin: 40px auto;
+
+    display: grid;
+
+    grid-template-columns:
+        420px
+        1fr;
+
+    gap: 30px;
+
+    align-items: start;
+}
+
+
+/* ========================================= */
+/* ÁREAS PRINCIPAIS */
+/* ========================================= */
+
+.form-area,
+.lista-area {
+    background: white;
+
+    padding: 28px;
+
+    border-radius: 18px;
+
+    border: 1px solid #e6eaf0;
+
+    box-shadow:
+        0 12px 35px
+        rgba(7, 26, 53, 0.08);
+}
+
+
+/* ========================================= */
+/* FORMULÁRIO */
+/* ========================================= */
+
+form {
+    width: 100%;
+}
+
+
+/* ========================================= */
+/* TÍTULOS */
+/* ========================================= */
+
+.titulo p {
+    color: #1e65ff;
+
+    font-size: 11px;
+
+    letter-spacing: 3px;
+
+    font-weight: bold;
+
+    text-transform: uppercase;
+}
+
+
+.titulo h1 {
+    font-size: 28px;
+
+    margin:
+        8px 0
+        25px;
+}
+
+
+.titulo h2 {
+    font-size: 24px;
+
+    margin:
+        8px 0
+        20px;
+}
+
+
+/* ========================================= */
+/* LABEL */
+/* ========================================= */
+
+label {
+    display: block;
+
+    font-weight: bold;
+
+    margin:
+        15px 0
+        7px;
+
+    font-size: 14px;
+}
+
+
+/* ========================================= */
+/* INPUTS */
+/* ========================================= */
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+
+    padding:
+        11px
+        12px;
+
+    border:
+        1px solid
+        #d9e0e8;
+
+    border-radius:
+        8px;
+
+    background:
+        white;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size:
+        14px;
+
+    color:
+        #071a35;
+
+    outline:
+        none;
+
+    transition:
+        0.2s;
+}
+
+
+input[type="text"]:focus,
+input[type="number"]:focus,
+select:focus,
+textarea:focus {
+    border-color:
+        #1e65ff;
+
+    box-shadow:
+        0 0 0 3px
+        rgba(
+            30,
+            101,
+            255,
+            0.08
+        );
+}
+
+
+/* ========================================= */
+/* TEXTAREA */
+/* ========================================= */
+
+textarea {
+    resize:
+        vertical;
+
+    min-height:
+        90px;
+
+    max-height:
+        180px;
+}
+
+
+/* ========================================= */
+/* DUAS COLUNAS */
+/* ========================================= */
+
+.duas-colunas {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:
+        12px;
+}
+
+
+/* ========================================= */
+/* PRODUTO ATIVO */
+/* ========================================= */
+
+.produto-ativo {
+    margin:
+        22px 0;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        8px;
+
+    cursor:
+        pointer;
+}
+
+
+.produto-ativo input {
+    cursor:
+        pointer;
+}
+
+
+/* ========================================= */
+/* LINHA */
+/* ========================================= */
+
+hr {
+    border:
+        none;
+
+    border-top:
+        1px solid
+        #e5e9ef;
+
+    margin:
+        25px 0;
+}
+
+
+/* ========================================= */
+/* CABEÇALHO CORES / MODELOS */
+/* ========================================= */
+
+.cabecalho-variantes {
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    gap:
+        20px;
+
+    margin:
+        25px 0
+        15px;
+}
+
+
+.cabecalho-variantes h2 {
+    font-size:
+        22px;
+
+    margin-bottom:
+        4px;
+}
+
+
+.cabecalho-variantes p {
+    font-size:
+        13px;
+
+    color:
+        #667085;
+}
+
+
+.cabecalho-variantes button {
+    border:
+        none;
+
+    background:
+        #071a35;
+
+    color:
+        white;
+
+    padding:
+        11px
+        15px;
+
+    border-radius:
+        9px;
+
+    font-weight:
+        bold;
+
+    cursor:
+        pointer;
+
+    white-space:
+        nowrap;
+
+    transition:
+        0.2s;
+}
+
+
+.cabecalho-variantes button:hover {
+    background:
+        #1e65ff;
+}
+
+
+/* ========================================= */
+/* VARIANTE */
+/* ========================================= */
+
+.variante-admin {
+    border:
+        1px solid
+        #dce1e8;
+
+    padding:
+        20px;
+
+    border-radius:
+        14px;
+
+    margin-bottom:
+        20px;
+
+    background:
+        #fafbfc;
+}
+
+
+/* ========================================= */
+/* TOPO VARIANTE */
+/* ========================================= */
+
+.variante-topo {
+    display:
+        flex;
+
+    justify-content:
+        space-between;
+
+    align-items:
+        center;
+
+    margin-bottom:
+        10px;
+}
+
+
+.variante-topo h3 {
+    color:
+        #071a35;
+
+    font-size:
+        18px;
+}
+
+
+.variante-topo button {
+    border:
+        none;
+
+    background:
+        #ffe5e5;
+
+    color:
+        #d63031;
+
+    padding:
+        8px
+        12px;
+
+    border-radius:
+        7px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        bold;
+}
+
+
+.variante-topo button:hover {
+    background:
+        #ffd1d1;
+}
+
+
+/* ========================================= */
+/* COR */
+/* ========================================= */
+
+input[type="color"] {
+    width:
+        65px;
+
+    height:
+        45px;
+
+    padding:
+        3px;
+
+    border:
+        1px solid
+        #dce1e8;
+
+    border-radius:
+        8px;
+
+    background:
+        white;
+
+    cursor:
+        pointer;
+}
+
+
+/* ========================================= */
+/* TAMANHOS */
+/* ========================================= */
+
+.tamanhos {
+    display:
+        flex;
+
+    flex-wrap:
+        wrap;
+
+    gap:
+        10px;
+
+    margin-top:
+        10px;
+}
+
+
+.tamanhos label {
+    margin:
+        0;
+
+    padding:
+        9px
+        13px;
+
+    background:
+        #f1f4f8;
+
+    border-radius:
+        8px;
+
+    cursor:
+        pointer;
+
+    display:
+        flex;
+
+    align-items:
+        center;
+
+    gap:
+        6px;
+
+    font-size:
+        13px;
+
+    transition:
+        0.2s;
+}
+
+
+.tamanhos label:hover {
+    background:
+        #e5eaf1;
+}
+
+
+/* ========================================= */
+/* TEXTO DE AJUDA */
+/* ========================================= */
+
+.ajuda {
+    font-size:
+        12px;
+
+    color:
+        #667085;
+
+    margin-bottom:
+        10px;
+
+    line-height:
+        1.5;
+}
+
+
+/* ========================================= */
+/* UPLOAD */
+/* ========================================= */
+
+input[type="file"] {
+    width:
+        100%;
+
+    padding:
+        15px;
+
+    background:
+        #f5f7fb;
+
+    border:
+        2px dashed
+        #cbd2dc;
+
+    border-radius:
+        10px;
+
+    cursor:
+        pointer;
+}
+
+
+/* ========================================= */
+/* FOTOS */
+/* ========================================= */
+
+.imagens-existentes,
+.fotos-variante {
+    display:
+        grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap:
+        8px;
+
+    margin-top:
+        15px;
+}
+
+
+.foto-admin {
+    position:
+        relative;
+
+    background:
+        #f5f6f8;
+
+    border-radius:
+        10px;
+
+    overflow:
+        hidden;
+}
+
+
+.foto-admin img {
+    width:
+        100%;
+
+    height:
+        90px;
+
+    object-fit:
+        cover;
+
+    display:
+        block;
+}
+
+
+.foto-admin button {
+    position:
+        absolute;
+
+    right:
+        4px;
+
+    top:
+        4px;
+
+    border:
+        none;
+
+    width:
+        24px;
+
+    height:
+        24px;
+
+    border-radius:
+        50%;
+
+    background:
+        #d63031;
+
+    color:
+        white;
+
+    cursor:
+        pointer;
+}
+
+
+/* ========================================= */
+/* BOTÕES FORMULÁRIO */
+/* ========================================= */
+
+.botoes-form {
+    display:
+        grid;
+
+    grid-template-columns:
+        1fr
+        1fr;
+
+    gap:
+        12px;
+
+    margin-top:
+        25px;
+}
+
+
+.botoes-form button {
+    min-height:
+        46px;
+
+    padding:
+        13px;
+
+    border:
+        none;
+
+    border-radius:
+        9px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        bold;
+
+    transition:
+        0.2s;
+}
+
+
+/* ========================================= */
+/* SALVAR */
+/* ========================================= */
+
+.salvar {
+    background:
+        #071a35;
+
+    color:
+        white;
+}
+
+
+.salvar:hover {
+    background:
+        #1e65ff;
+}
+
+
+/* ========================================= */
+/* CANCELAR */
+/* ========================================= */
+
+.cancelar {
+    background:
+        #edf0f5;
+
+    color:
+        #071a35;
+}
+
+
+.cancelar:hover {
+    background:
+        #dfe4eb;
+}
+
+
+/* ========================================= */
+/* LISTA DOS PRODUTOS */
+/* ========================================= */
+
+.lista-area {
+    min-height:
+        300px;
+}
+
+
+.produto-admin {
+    border-bottom:
+        1px solid
+        #e6e9ee;
+
+    padding:
+        18px 0;
+
+    display:
+        grid;
+
+    grid-template-columns:
+        90px
+        1fr
+        auto;
+
+    gap:
+        18px;
+
+    align-items:
+        center;
+}
+
+
+.produto-admin:last-child {
+    border-bottom:
+        none;
+}
+
+
+/* ========================================= */
+/* FOTO PRODUTO CADASTRADO */
+/* ========================================= */
+
+.produto-admin img {
+    width:
+        90px;
+
+    height:
+        100px;
+
+    object-fit:
+        contain;
+
+    background:
+        #f5f6f8;
+
+    border-radius:
+        10px;
+}
+
+
+/* ========================================= */
+/* TEXTO PRODUTO */
+/* ========================================= */
+
+.produto-admin h3 {
+    margin-bottom:
+        6px;
+
+    font-size:
+        17px;
+}
+
+
+.produto-admin p {
+    color:
+        #667085;
+
+    font-size:
+        13px;
+
+    margin-top:
+        4px;
+
+    line-height:
+        1.5;
+}
+
+
+/* ========================================= */
+/* AÇÕES */
+/* ========================================= */
+
+.acoes {
+    display:
+        flex;
+
+    gap:
+        7px;
+}
+
+
+.acoes button {
+    border:
+        none;
+
+    padding:
+        9px
+        12px;
+
+    border-radius:
+        7px;
+
+    cursor:
+        pointer;
+
+    font-weight:
+        bold;
+
+    transition:
+        0.2s;
+}
+
+
+/* ========================================= */
+/* EDITAR */
+/* ========================================= */
+
+.editar {
+    background:
+        #071a35;
+
+    color:
+        white;
+}
+
+
+.editar:hover {
+    background:
+        #1e65ff;
+}
+
+
+/* ========================================= */
+/* EXCLUIR */
+/* ========================================= */
+
+.excluir {
+    background:
+        #ffe5e5;
+
+    color:
+        #d63031;
+}
+
+
+.excluir:hover {
+    background:
+        #ffd1d1;
+}
+
+
+/* ========================================= */
+/* RESPONSIVO 1100PX */
+/* ========================================= */
+
+@media(max-width: 1100px) {
+
+    main {
+        grid-template-columns:
+            380px
+            1fr;
+
+        gap:
+            25px;
+    }
+
+}
+
+
+/* ========================================= */
+/* RESPONSIVO 900PX */
+/* ========================================= */
+
+@media(max-width: 900px) {
+
+    main {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .form-area,
+    .lista-area {
+        width:
+            100%;
+    }
+
+}
+
+
+/* ========================================= */
+/* RESPONSIVO CELULAR */
+/* ========================================= */
+
+@media(max-width: 550px) {
+
+    header {
+        padding:
+            12px
+            15px;
+    }
+
+
+    .marca img {
+        width:
+            48px;
+
+        height:
+            48px;
+    }
+
+
+    .marca strong {
+        font-size:
+            15px;
+    }
+
+
+    main {
+        width:
+            100%;
+
+        margin:
+            20px auto;
+
+        padding:
+            0 15px;
+    }
+
+
+    .form-area,
+    .lista-area {
+        padding:
+            20px;
+    }
+
+
+    .duas-colunas {
+        grid-template-columns:
+            1fr;
+    }
+
+
+    .cabecalho-variantes {
+        flex-direction:
+            column;
+
+        align-items:
+            stretch;
+    }
+
+
+    .cabecalho-variantes button {
+        width:
+            100%;
+    }
+
+
+    .fotos-variante,
+    .imagens-existentes {
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+
+    .produto-admin {
+        grid-template-columns:
+            70px
+            1fr;
+    }
+
+
+    .produto-admin img {
+        width:
+            70px;
+
+        height:
+            80px;
+    }
+
+
+    .acoes {
+        grid-column:
+            1 / -1;
+
+        width:
+            100%;
+    }
+
+
+    .acoes button {
+        flex:
+            1;
+    }
+
+
+    .botoes-form {
+        grid-template-columns:
+            1fr;
+    }
+
+}

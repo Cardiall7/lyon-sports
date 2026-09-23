@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+        Lyon Sports | Camisas de Futebol
+    </title>
+
+    <link
+        rel="icon"
+        type="image/png"
+        href="lion-sports-branco.png">
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+
+<body>
+
+
+    <!-- ===================================== -->
+    <!-- CARREGAMENTO -->
+    <!-- ===================================== -->
+
+    <div id="loading">
+
+        <img
+            src="lion-sports-branco.png"
+            alt="Lyon Sports"
+            class="loading-logo">
+
+        <h2>
+            LYON SPORTS
+        </h2>
+
+        <p>
+            Entrando no site...
+        </p>
+
+        <div class="loading-barra">
+
+            <div class="loading-progresso"></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ===================================== -->
+    <!-- TOPO -->
+    <!-- ===================================== -->
+
+    <div class="topo">
+
+        LYON SPORTS • FUTEBOL • PERFORMANCE • ESTILO
+
+    </div>
+
+
+    <!-- ===================================== -->
+    <!-- HEADER -->
+    <!-- ===================================== -->
+
+    <header>
+
+
+        <a
+            href="#inicio"
+            class="logo">
+
+            <img
+                src="logo-lion.jpeg"
+                alt="Lyon Sports">
+
+        </a>
+
+
+        <nav>
+
+            <a href="#inicio">
+                Início
+            </a>
+
+            <a href="#produtos">
+                Camisas
+            </a>
+
+            <a href="#sobre">
+                Sobre
+            </a>
+
+        </nav>
+
+
+        <button
+            class="botao-carrinho"
+            onclick="abrirCarrinho()">
+
+            🛒 Carrinho
+
+            <span id="quantidadeCarrinho">
+                0
+            </span>
+
+        </button>
+
+
+    </header>
+
+
+    <!-- ===================================== -->
+    <!-- BANNER -->
+    <!-- ===================================== -->
+
+    <section
+        class="banner"
+        id="inicio">
+
+
+        <div class="banner-texto">
+
+            <p class="mini-titulo">
+                LYON SPORTS
+            </p>
+
+            <h1>
+
+                VISTA SUA
+
+                <span>
+                    PAIXÃO.
+                </span>
+
+            </h1>
+
+            <p>
+
+                Camisas de futebol para quem vive
+                o esporte dentro e fora dos estádios.
+
+            </p>
+
+            <a
+                href="#produtos"
+                class="botao-principal">
+
+                VER CAMISAS
+
+            </a>
+
+        </div>
+
+
+        <div class="banner-logo">
+
+            <div class="circulo">
+
+                <img
+                    src="logo-lion-2.jpeg"
+                    alt="Lyon Sports">
+
+            </div>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- CATEGORIAS -->
+    <!-- ===================================== -->
+
+    <section class="categorias">
+
+        <div>
+            ⚽ Clubes Europeus
+        </div>
+
+        <div>
+            🇧🇷 Clubes Brasileiros
+        </div>
+
+        <div>
+            🌎 Seleções
+        </div>
+
+        <div>
+            👕 Camisas Esportivas
+        </div>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- PRODUTOS -->
+    <!-- ===================================== -->
+
+    <section
+        class="produtos"
+        id="produtos">
+
+
+        <div class="titulo-secao">
+
+            <p>
+                NOSSA COLEÇÃO
+            </p>
+
+            <h2>
+                Escolha seu time
+            </h2>
+
+        </div>
+
+
+        <div class="filtros">
+
+            <button
+                class="filtro ativo"
+                onclick="filtrarProdutos('todos', this)">
+
+                Todos
+
+            </button>
+
+
+            <button
+                class="filtro"
+                onclick="filtrarProdutos('europeu', this)">
+
+                Europeus
+
+            </button>
+
+
+            <button
+                class="filtro"
+                onclick="filtrarProdutos('brasileiro', this)">
+
+                Brasileiros
+
+            </button>
+
+
+            <button
+                class="filtro"
+                onclick="filtrarProdutos('selecao', this)">
+
+                Seleções
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="lista-produtos"
+            id="listaProdutos">
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- SOBRE -->
+    <!-- ===================================== -->
+
+    <section
+        class="sobre"
+        id="sobre">
+
+
+        <div class="sobre-logo">
+
+            <img
+                src="lion-sports-branco.png"
+                alt="Lyon Sports">
+
+        </div>
+
+
+        <div class="sobre-texto">
+
+            <p class="mini-titulo">
+                LYON SPORTS
+            </p>
+
+            <h2>
+
+                FUTEBOL.
+                ESTILO.
+                PAIXÃO.
+
+            </h2>
+
+            <p>
+
+                A Lyon Sports é uma loja voltada
+                para quem vive futebol, esporte e estilo.
+
+                Escolha sua camisa, cor, tamanho
+                e finalize seu pedido pelo WhatsApp.
+
+            </p>
+
+        </div>
+
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- RODAPÉ -->
+    <!-- ===================================== -->
+
+    <footer>
+
+        <img
+            src="logo-lion-sem-fundo-2.png"
+            alt="Lyon Sports">
+
+        <p>
+
+            Lyon Sports • Futebol • Performance • Estilo
+
+        </p>
+
+    </footer>
+
+
+    <!-- ===================================== -->
+    <!-- WHATSAPP -->
+    <!-- ===================================== -->
+
+    <button
+        class="whatsapp"
+        onclick="abrirSuporte()">
+
+        ☎
+
+    </button>
+
+
+    <!-- ===================================== -->
+    <!-- FUNDO CARRINHO -->
+    <!-- ===================================== -->
+
+    <div
+        class="fundo-carrinho"
+        id="fundoCarrinho"
+        onclick="fecharCarrinho()">
+
+    </div>
+
+
+    <!-- ===================================== -->
+    <!-- CARRINHO -->
+    <!-- ===================================== -->
+
+    <aside
+        class="carrinho"
+        id="carrinho">
+
+
+        <div class="carrinho-topo">
+
+            <div>
+
+                <small>
+                    LYON SPORTS
+                </small>
+
+                <h2>
+                    Seu carrinho
+                </h2>
+
+            </div>
+
+
+            <button
+                onclick="fecharCarrinho()">
+
+                ×
+
+            </button>
+
+        </div>
+
+
+        <div
+            class="itens-carrinho"
+            id="itensCarrinho">
+
+        </div>
+
+
+        <div
+            class="carrinho-vazio"
+            id="carrinhoVazio">
+
+            <div>
+                🛒
+            </div>
+
+            <h3>
+                Seu carrinho está vazio
+            </h3>
+
+            <p>
+                Escolha uma camisa para começar.
+            </p>
+
+        </div>
+
+
+        <div class="final-carrinho">
+
+            <div class="total">
+
+                <span>
+                    Total
+                </span>
+
+                <strong id="totalCarrinho">
+                    R$ 0,00
+                </strong>
+
+            </div>
+
+
+            <button
+                onclick="finalizarPedido()">
+
+                FINALIZAR NO WHATSAPP
+
+            </button>
+
+        </div>
+
+
+    </aside>
+
+
+    <!-- ===================================== -->
+    <!-- MENSAGEM -->
+    <!-- ===================================== -->
+
+    <div
+        class="mensagem"
+        id="mensagem">
+
+        Produto adicionado ao carrinho!
+
+    </div>
+
+
+    <!-- ===================================== -->
+    <!-- MODAL DO PRODUTO -->
+    <!-- ===================================== -->
+
+    <div
+        class="produto-modal-fundo"
+        id="produtoModalFundo"
+        onclick="fecharProduto(event)">
+
+
+        <div
+            class="produto-modal"
+            id="produtoModal">
+
+
+            <button
+                class="fechar-produto"
+                onclick="fecharProduto()">
+
+                ×
+
+            </button>
+
+
+            <!-- GALERIA -->
+
+            <div class="produto-galeria">
+
+
+                <div
+                    class="imagem-principal-area"
+                    id="imagemPrincipalArea">
+
+                    <img
+                        id="imagemProdutoPrincipal"
+                        src=""
+                        alt="Produto">
+
+                </div>
+
+
+                <div
+                    class="miniaturas-produto"
+                    id="miniaturasProduto">
+
+                </div>
+
+
+            </div>
+
+
+            <!-- DETALHES -->
+
+            <div class="produto-detalhes">
+
+
+                <span
+                    class="modal-selo"
+                    id="modalSelo">
+
+                </span>
+
+
+                <h2 id="modalNome">
+                </h2>
+
+
+                <p
+                    class="modal-descricao"
+                    id="modalDescricao">
+
+                </p>
+
+
+                <h3
+                    class="modal-preco"
+                    id="modalPreco">
+
+                </h3>
+
+
+                <!-- CORES -->
+
+                <div class="opcao-produto">
+
+                    <strong>
+                        Cor / Modelo
+                    </strong>
+
+                    <div
+                        class="cores-produto"
+                        id="coresProduto">
+
+                    </div>
+
+                </div>
+
+
+                <!-- TAMANHOS -->
+
+                <div class="opcao-produto">
+
+                    <strong>
+                        Tamanho
+                    </strong>
+
+                    <div
+                        class="tamanhos-produto"
+                        id="tamanhosProduto">
+
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="botao-comprar-modal"
+                    onclick="adicionarProdutoSelecionado()">
+
+                    ADICIONAR AO CARRINHO
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+
+</body>
+
+</html>
